@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     PageHomeController
 };
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Course;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-test('released scope',function (){
+test('released scope', function () {
     // Arrange
     Course::factory()->released()->create();
     Course::factory()->create();

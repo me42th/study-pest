@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course>
@@ -19,13 +19,14 @@ class CourseFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(3),
-            'description' => $this->faker->sentence(10)
+            'description' => $this->faker->sentence(10),
         ];
     }
 
-    public function released(Carbon $carbon = null) : self{
+    public function released(?Carbon $carbon = null): self
+    {
         return $this->state(fn ($attributes) => [
-            'released_at' => $carbon??Carbon::now()
+            'released_at' => $carbon ?? Carbon::now(),
         ]);
     }
 }
