@@ -18,12 +18,14 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->sentence
+            'title' => $this->faker->sentence(3),
+            'description' => $this->faker->sentence(10)
         ];
     }
 
-    public function released(Carbon $carbon = null){
-        //return $this->state()
+    public function released(Carbon $carbon = null) : self{
+        return $this->state(fn ($attributes) => [
+            'released_at' => $carbon??Carbon::now()
+        ]);
     }
 }
