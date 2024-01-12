@@ -18,4 +18,9 @@ class Course extends Model
     {
         return $query->whereNotNull('released_at')->orderByDesc('released_at');
     }
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
 }

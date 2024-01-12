@@ -1,6 +1,10 @@
 <?php
 
-use App\Models\Course;
+use App\Models\{
+    Course,
+    Video
+};
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -14,4 +18,15 @@ test('released scope', function () {
     expect(Course::released()->get())
         ->toHaveCount(1)
         ->first()->id->toEqual(1);
+});
+
+it('has videos',function(){
+    // Arrange
+    $course = Course::factory()->create();
+    Video::factory()->count(3)->create(['course_id' => $course->id]);
+
+    // Act && Assert
+    expect($course->videos)
+        ->toHaveCount(3)
+        ->each->toBeInstanceOf(Video::class);
 });
