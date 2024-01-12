@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
+            $table->string('slug');
+            $table->string('tagline');
+            $table->string('image');
+            $table->json('learnings');
             $table->timestamp('released_at')->nullable();
             $table->timestamps();
         });
