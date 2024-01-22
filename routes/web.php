@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', PageHomeController::class)->name('home');
-Route::get('course/{course:slug}',PageCourseDetailsController::class)->name('course-details');
+Route::get('/', PageHomeController::class)->name('pages.home');
+Route::get('course/{course:slug}',PageCourseDetailsController::class)->name('pages.course-details');

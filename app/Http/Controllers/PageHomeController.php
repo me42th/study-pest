@@ -13,6 +13,6 @@ class PageHomeController extends Controller
     {
         $courses = Course::released()->get();
 
-        return view('home', compact('courses'));
+        return view('pages.home', compact('courses'));
     }
 }

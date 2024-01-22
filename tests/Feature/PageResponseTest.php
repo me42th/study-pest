@@ -7,7 +7,7 @@ use App\Models\Course;
 uses (RefreshDatabase::class);
 it('gives back successful response for home page', function () {
     // Act & Assert
-    get(route('home'))->assertOk();
+    get(route('pages.home'))->assertOk();
 });
 
 it('gives back successful response for course details page',function(){
@@ -15,6 +15,6 @@ it('gives back successful response for course details page',function(){
     $course = Course::factory()->released()->create();
 
     // Act && Assert
-    get(route('course-details',$course))
+    get(route('pages.course-details',$course))
         ->assertOk();
 });
