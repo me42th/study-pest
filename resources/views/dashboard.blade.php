@@ -10,7 +10,10 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <ul>
                     @foreach($purchasedCourses as $course)
-                        {{$course->title}}
+                        <li>
+                            {{$course->title}}
+                            <a href="{{route('page.course-videos',$course)}}">Watch videos</a>
+                        </li>
                     @endforeach
                 </ul>
 

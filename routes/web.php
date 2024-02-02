@@ -3,7 +3,8 @@
 use App\Http\Controllers\{
     PageHomeController,
     PageCourseDetailsController,
-    PageDashboardController
+    PageDashboardController,
+    PageVideosController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard',
-        PageDashboardController::class
-    )->name('dashboard');
+    Route::get('/dashboard',PageDashboardController::class)->name('dashboard');
+    Route::get('videos/{course:slug}',PageVideosController::class)->name('page.course-videos');
 });
