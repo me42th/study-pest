@@ -5,9 +5,7 @@ use App\Models\{
     Video
 };
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses(RefreshDatabase::class);
 
 test('released scope', function () {
     // Arrange

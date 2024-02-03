@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use function Pest\Laravel\get;
 use App\Models\{
     Course,
     User
 };
 
-uses (RefreshDatabase::class);
+
 it('gives back successful response for home page', function () {
     // Act & Assert
     get(route('pages.home'))->assertOk();
@@ -23,11 +23,8 @@ it('gives back successful response for course details page',function(){
 });
 
 it('gives back successful response for dashboard page',function(){
-    // Arrange
-    $user = User::factory->create();
-
-    // Act && Assert
-    $this->actingAs($user);
-    get(route('dashboard'))
+    // Arrange && Act && Assert
+    loginAsUser();
+    get(route('pages.dashboard'))
         ->assertOk();
 });

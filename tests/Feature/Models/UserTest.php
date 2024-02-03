@@ -5,9 +5,6 @@ use App\Models\{
     Course
 };
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-uses(RefreshDatabase::class);
 
 test('has courses', function () {
     // Arrange

@@ -6,8 +6,7 @@ use App\Models\{
 };
 use function Pest\Laravel\get;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-uses (RefreshDatabase::class);
+
 
 it('does not find unreleased course',function(){
     // Arrange
