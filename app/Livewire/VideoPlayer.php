@@ -10,7 +10,6 @@ class VideoPlayer extends Component
 
     public function render(): View
     {
-        ds($this->video);
         return view('livewire.video-player');
     }
 }

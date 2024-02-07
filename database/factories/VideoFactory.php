@@ -3,6 +3,10 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\{
+    Video,
+    Course
+};
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Video>
@@ -19,9 +23,18 @@ class VideoFactory extends Factory
         return [
             'title' => $this->faker->name(),
             'slug' => $this->faker->slug(),
+            'course_id' => Course::factory(),
             'description' => $this->faker->name(),
-            'duration' => random_int(2,10),
+            'duration_in_minutes' => random_int(2,10),
             'vimeo_id' => $this->faker->uuid()
         ];
+    }
+
+    public function vimeoId($vimeoId): static
+    {
+        return $this->state(fn (array $attributes) => [
+                'vimeo_id' => $vimeoId,
+            ]
+        );
     }
 }

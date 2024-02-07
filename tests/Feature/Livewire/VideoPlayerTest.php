@@ -10,31 +10,25 @@ use App\Models\{
 
 it('shows details for given video',function(){
     //Arrange
-    $title = fake()->name;
-    $description = fake()->name;
-    $duration = random_int(1,10);
     $course = Course::factory()
-        ->has(Video::factory()->state(
-            compact(['title','description','duration'])
-        ))->create();
+        ->has(Video::factory())
+        ->create();
+    $video = $course->videos->first();
 
     //Act && Assert
-    Livewire::test(VideoPlayer::class,['video'=>$course->videos->first()])
-        ->assertSeeText([
-            $title,
-            $duration,
-            $description
-        ]);
+    Livewire::test(VideoPlayer::class,compact('video'))
+        ->assertSeeText(
+            \Arr::only($video->toArray(),['title','description','duration'])
+        );
 });
 
 it('shows given video',function(){
     //Arrange
     $course = Course::factory()
-        ->has(Video::factory()->state([
-            'vimeo_id' => 'vimeo-id'
-        ]))->create();
+        ->has(Video::factory()->vimeoId('vimeoId'))->create();
 
     //Act && Assert
-    Livewire::test(VideoPlayer::class,['video'=>$course->videos->first()])
-        ->assertSee('<iframe src="https://player.vimeo.com/video/vimeo-id"',false);
+    $video = $course->videos->first();
+    Livewire::test(VideoPlayer::class,compact('video'))
+        ->assertSeeHtml("<iframe src=\"https://player.vimeo.com/video/$video->vimeo_id\"");
 });
