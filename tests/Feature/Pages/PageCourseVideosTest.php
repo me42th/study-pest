@@ -34,7 +34,7 @@ it('include video player', function(){
 it('shows first course video by default', function(){
     // Arrange
     $course = Course::factory()
-        ->has(Video::factory()->state(['title' => 'cool']))
+        ->has(Video::factory()->state(['title' => 'cool','description'=>fake()->name,'duration'=>random_int(2,10)]))
         ->create();
 
     // Act && Assert
@@ -47,8 +47,8 @@ it('shows first course video by default', function(){
 it('shows provided course video',function (){
     // Arrange
     $titles = [
-        ['title' => fake()->name],
-        ['title' => fake()->name]
+        ['title' => fake()->name,'description'=>fake()->name,'duration'=>random_int(2,10)],
+        ['title' => fake()->name,'description'=>fake()->name,'duration'=>random_int(2,10)]
     ];
     $course = Course::factory()
         ->has(Video::factory()

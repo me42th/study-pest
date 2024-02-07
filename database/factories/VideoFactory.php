@@ -18,7 +18,10 @@ class VideoFactory extends Factory
     {
         return [
             'title' => $this->faker->name(),
-            'slug' => $this->faker->slug()
+            'slug' => $this->faker->slug(),
+            'description' => $this->faker->name(),
+            'duration' => random_int(2,10),
+            'vimeo_id' => $this->faker->uuid()
         ];
     }
 }
