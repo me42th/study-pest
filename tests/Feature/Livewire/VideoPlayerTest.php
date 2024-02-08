@@ -3,6 +3,7 @@
 use Livewire\Livewire;
 use App\Livewire\VideoPlayer;
 use function Pest\Faker\fake;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use App\Models\{
     Course,
     Video
@@ -31,4 +32,31 @@ it('shows given video',function(){
     $video = $course->videos->first();
     Livewire::test(VideoPlayer::class,compact('video'))
         ->assertSeeHtml("<iframe src=\"https://player.vimeo.com/video/$video->vimeo_id\"");
+});
+
+it('shows list of all course videos',function(){
+    // Arrange
+    $course = Course::factory()
+        ->has(
+            Video::factory()
+                ->count(3)
+                ->state(new Sequence(
+                    ['title'=>$firstTitle = fake()->name],
+                    ['title'=>$secondTitle = fake()->name],
+                    ['title'=>$thirdTitle = fake()->name]
+                ))
+        )->create();
+
+    // Act & Assert
+    Livewire::test(VIdeoPlayer::class,['video'=>$course->videos()->first()])
+        ->assertSee([$firstTitle,$secondTitle,$thirdTitle])
+        ->assertSeeHtml([
+            route('pages.course-videos',Video::where(['title'=>$firstTitle])->first())
+        ])
+        ->assertSeeHtml([
+            route('pages.course-videos',Video::where(['title'=>$secondTitle])->first())
+        ])
+        ->assertSeeHtml([
+            route('pages.course-videos',Video::where(['title'=>$thirdTitle])->first())
+        ]);
 });

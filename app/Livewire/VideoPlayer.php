@@ -6,7 +6,12 @@ use Livewire\Component;
 
 class VideoPlayer extends Component
 {
-    public $video;
+    public $video, $courseVideos;
+
+    public function mount():void
+    {
+        $this->courseVideos = $this->video->course->videos()->get();
+    }
 
     public function render(): View
     {
